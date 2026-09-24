@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import bannerImg from '../assets/banner.png'
+import bannerImg from '../../assets/banner.png'
 
 const Banner = () => {
     return (
@@ -11,7 +11,7 @@ const Banner = () => {
                     <div className='max-w-3xl py-5 space-y-4'>
                         <h2 className="uppercase text-[#ffffff] text-6xl font-bold">Train with intent.log every set.</h2>
                     <p className='text-[#9ca3af]' >FitLog is a dark, no-nonsense gym companion: pick a lift, lock it
-                    <br />into today's plan, and watch the week's work add up.</p>
+                    <br />into todays plan, and watch the weeks work add up.</p>
                     </div>
                     <button className=' text-xs font-bold uppercase bg-[#c2f800] py-3 px-8 rounded' >Browse Workouts</button>
                 </div>

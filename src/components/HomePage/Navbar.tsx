@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import logo from '../assets/logo.png';
+import logo from '../../assets/logo.png'
 
 const Navbar = () => {
 
@@ -19,7 +19,7 @@ const Navbar = () => {
       </div>
       <ul
         tabIndex={-1}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-xm  font-medium">
        {links}
       </ul>
     </div>
@@ -29,20 +29,20 @@ const Navbar = () => {
     </div>
   </div>
   <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
+    <ul className="menu menu-horizontal px-1 text-xm  font-medium">
       {links}
     </ul>
   </div>
   <div className="navbar-end gap-4">
-    <div className='flex gap-2'>
+    <div className='flex gap-3 items-center'>
        
-        <h2>Plan</h2>
-         <span>0</span>
+        <h2 className='text-xm  font-medium' >Plan</h2>
+         <span className="rounded-full bg-[#ccff00] px-3 py-1 text-sm font-semibold text-black">0</span>
     </div>
-    <div className='flex gap-2'>
+    <div className='flex gap-3 items-center'>
        
-        <h2>Saved</h2>
-        <span>0</span>
+        <h2 className='text-xm font-medium' >Saved</h2>
+        <span  className="rounded-full border border-[#ccff00] px-3 py-1 text-sm font-semibold text-[#ccff00]" >0</span>
     </div>
   </div>
 </div>
