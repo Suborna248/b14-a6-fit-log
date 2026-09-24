@@ -6,7 +6,7 @@ import logo from '../../assets/logo.png'
 const Navbar = () => {
 
     const links =<>
-         <li><Link href="/worksout</li>" >Worksout</Link></li> 
+         <li><Link href="/">Worksout</Link></li> 
          <li><Link href='/myplan'>My Plan</Link></li>
     </>
     return (
