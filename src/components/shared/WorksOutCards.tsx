@@ -11,9 +11,9 @@ interface WorksOutCardsProp {
 
 const WorksOutCards = ({ worksOut }: WorksOutCardsProp) => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto ">
       <Link href={`/worksout/${worksOut.id}`}>
-        <div className="card bg-[#20242e] h-120 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+        <div className="card bg-[#20242e] h-120 shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer ">
 
    
           <figure>
@@ -22,13 +22,13 @@ const WorksOutCards = ({ worksOut }: WorksOutCardsProp) => {
               alt={worksOut.name}
               width={550}
               height={500}
-              className="w-full h-60 object-cover"
+              className="  "
             />
           </figure>
 
-          <div className="card-body">
+          <div className="card-body h-70 pb-8">
 
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-4 flex-wrap">
               {worksOut.muscleGroups.map((muscle) => (
                 <span
                   className="badge bg-[#c2f800] text-black uppercase font-medium"
@@ -46,9 +46,9 @@ const WorksOutCards = ({ worksOut }: WorksOutCardsProp) => {
               {worksOut.equipment}
             </p>
 
-            <div className="divider divider-success"></div>
+         
 
-            <div className="card-actions flex text-white gap-3 flex-wrap">
+            <div className="card-actions flex text-white  gap-5 flex-wrap">
               <div className="badge badge-outline gap-1">
                 <MdAccessTimeFilled />
                 <span>{worksOut.duration}</span>

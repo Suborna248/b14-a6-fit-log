@@ -10,7 +10,7 @@ const Navbar = () => {
          <li><Link href='/myplan'>My Plan</Link></li>
     </>
     return (
-        <div className=' bg-[#1a2312]  shadow-sm text-[#ffffff]  border-b-2 sticky  '>
+        <div className=' bg-[#1a2312]  shadow-sm text-[#ffffff]  sticky top-0 z-50 border-b-2 border-gray-300 '>
             <div className="navbar container mx-auto">
        <div className="navbar-start">
     <div className="dropdown">

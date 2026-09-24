@@ -1,6 +1,8 @@
+import AddPlanButton from '@/components/WorksOutDetails/AddPlanButton';
 import { WorksOutType } from '@/types/WorksOutType';
 import Image from 'next/image';
 import React from 'react';
+import { FaBookmark } from 'react-icons/fa';
 
 interface WorkOutDetailsPageProp{
     params:Promise<{
@@ -21,11 +23,11 @@ const WorkOutDetailsPage = async({params}:WorkOutDetailsPageProp) => {
     const worksOut = worksOuts.find((workOut : WorksOutType) => workOut.id === parseInt(workId)) as WorksOutType;
     console.log(worksOut);
     return (
-        <div className='container mx-auto my-16'>
+        <div className='container mx-auto my-16 '>
             <div className="card lg:card-side bg-[#171a21] rounded-4xl shadow-2xl max-w-[1500px]">
   <figure>
     <Image
-    className='w-140 h-160 rounded-4xl shadow-2xl'
+    className='w-140 h-full rounded-3xl shadow-2xl '
       src={worksOut.image}
       alt="Album"
       width={500}
@@ -46,32 +48,38 @@ const WorkOutDetailsPage = async({params}:WorkOutDetailsPageProp) => {
               ))}
             </div>
 
-            <div className='bg-[#e5e7eb]/10 py-8 px-8 space-y-4 w-200 h-74 rounded-xl'>
+            <div className='bg-[#e5e7eb]/10 py-8 px-8 space-y-3 sm:w-120 md:w-170 lg:w-200 h-84 rounded-xl'>
                 <div className='flex justify-between items-center '>
                     <h2 className='text-xs font-bold uppercase text-[#9ca3af]'>Equipment</h2>
                     <p className='text-[#e5e7eb] text-sm font-medium'>{worksOut.equipment}</p>
                 </div>
+                <div className="w-full h-px bg-[#9ca3af] my-3"></div>
                 <div className='flex justify-between'>
                     <h2 className='text-xs font-bold uppercase text-[#9ca3af]'>Difficulty</h2>
                     <p className='text-[#e5e7eb] text-sm font-medium'>{worksOut.difficulty}</p>
                 </div>
+                <div className="w-full h-px bg-[#9ca3af] my-3"></div>
                 <div className='flex justify-between'>
                     <h2 className='text-xs font-bold uppercase text-[#9ca3af]' >Sets</h2>
                     <p className='text-[#e5e7eb] text-sm font-medium'>{worksOut.sets}</p>
                 </div>
+                <div className="w-full h-px bg-[#9ca3af] my-3"></div>
                 <div className='flex justify-between'>
                    <h2 className='text-xs font-bold uppercase text-[#9ca3af]'>Reps</h2>
                     <p className='text-[#e5e7eb] text-sm font-medium'>{worksOut.reps}</p>
                 </div>
+                <div className="w-full h-px bg-[#9ca3af] my-3"></div>
                 <div className='flex justify-between'>
                     <h2 className='text-xs font-bold uppercase text-[#9ca3af]'>Duration</h2>
                     <p className='text-[#e5e7eb] text-sm font-medium'>{worksOut.duration} min</p>
                 </div>
+                <div className="w-full h-px bg-[#9ca3af] my-3"></div>
                 <div className='flex justify-between'>
                     <h2 className='text-xs font-bold uppercase text-[#9ca3af]'>calories</h2>
                     <p className='text-[#e5e7eb] text-sm font-medium'>{worksOut.caloriesBurned} kcal</p>
                 </div>
-                <div className='flex justify-between'>
+                <div className="w-full h-px  bg-[#9ca3af] my-3"></div>
+                <div className='flex justify-between '>
                     <h2 className='text-xs font-bold uppercase text-[#9ca3af]'>rating</h2>
                     <p className='text-[#e5e7eb] text-sm font-medium'>{worksOut.rating}</p>
                 </div>
@@ -80,12 +88,22 @@ const WorkOutDetailsPage = async({params}:WorkOutDetailsPageProp) => {
             </div>
 
             <div className='mt-5'>
-                <h2 className='text-white'>Instruction</h2>
+                <h2 className='text-white font-extrabold text-lg'>Instruction</h2>
+                 <div className="mt-4 flex flex-col gap-3">
+                  {
+                  worksOut.instructions.map((instruction, index) => (
+                   <div key={index} className="flex items-start gap-2">
+                   <span className="text-[#9ca3af] text-sm shrink-0">{index + 1}. </span>
+                     <p className="text-[#d1d5db] text-sm ">{instruction}</p>
+                   </div>
+                  ))}
+              </div>
 
 
             </div>
-    <div className="card-actions justify-end">
-      <button className="btn btn-primary">Listen</button>
+    <div className="card-actions my-10 gap-8 ">
+      <AddPlanButton worksOut={worksOut}></AddPlanButton>
+      <button className="btn bg-[#374151] text-[#e5e7eb] flex gap-3 "><FaBookmark />Save for later</button>
     </div>
   </div>
 </div>
