@@ -2,6 +2,7 @@
 
 import NothingYet from '@/components/NothingYet/NothingYet';
 import MyPlanCard from '@/components/shared/MyPlanCard';
+import MySavedCard from '@/components/shared/MySavedCard';
 import { WorkOutContext } from '@/Context/WorkOutContext';
 import { WorksOutType } from '@/types/WorksOutType';
 import React, { useContext } from 'react';
@@ -39,7 +40,7 @@ const MyPlanPage = () => {
             </div>
 
             <div className="tabs tabs-box my-14">
-            <input type="radio" name="my_tabs_6" className="tab" aria-label="Today's Plan" />
+            <input type="radio" name="my_tabs_6" className="tab" aria-label="Today's Plan" defaultChecked />
            <div className="tab-content bg-base-100 border-base-300 p-6">
 
              <div className='space-y-6'>
@@ -54,8 +55,17 @@ const MyPlanPage = () => {
             </div>
            </div>
 
-          <input type="radio" name="my_tabs_6" className="tab" aria-label="Saved" defaultChecked />
-            <div className="tab-content bg-base-100 border-base-300 p-6">Tab content 2</div>
+           <input type="radio" name="my_tabs_6" className="tab" aria-label="Saved" />
+            <div className="tab-content bg-base-100 border-base-300 p-6">  <div className='space-y-6'>
+
+                {
+                   savelater.length>0 ? (
+                    savelater.map((saved:WorksOutType)=><MySavedCard saved={saved} key={saved.id}></MySavedCard >)
+                ) : (<NothingYet></NothingYet>)
+                }
+
+                
+            </div></div>
 
   
            </div>

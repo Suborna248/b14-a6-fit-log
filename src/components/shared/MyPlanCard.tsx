@@ -1,5 +1,6 @@
 import { WorksOutType } from '@/types/WorksOutType';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { FaFireAlt, FaRegStar } from 'react-icons/fa';
 import { MdAccessTime } from 'react-icons/md';
@@ -10,7 +11,10 @@ const MyPlanCard = ({plan}:{plan:WorksOutType}) => {
     return (
         <div className='bg-[#13161d] rounded-xl shadow-2xl'>
 
-            <div className='flex gap-4  '>
+          <div className='flex justify-between items-center px-4'>
+
+
+             <div className='flex gap-4  '>
                 {/* Image */}
                 <div>
                     <Image  className=' h-40  w-55 py-5 px-5 rounded-3xl' src={plan.image} alt={plan.image} width={170} height={100}></Image>
@@ -46,6 +50,21 @@ const MyPlanCard = ({plan}:{plan:WorksOutType}) => {
 
 
             </div>
+
+
+             <div className='flex gap-4'>
+                            <Link href={`/worksout/${plan.id}`}>
+                            <button className="btn btn-neutral border-amber-50 rounded-full">View Details</button>
+                            </Link>
+                            <Link href={`/worksout/${plan.id}`}>
+                            <button className="btn btn-neutral border-amber-50 bg-[#ccff00] text-[#1e1e1e] rounded-full">Mark as Done</button>
+                            </Link>
+             </div>
+
+
+
+
+          </div>
             
 
             
