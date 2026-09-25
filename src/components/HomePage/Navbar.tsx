@@ -1,9 +1,18 @@
+"use client"
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../assets/logo.png'
+import { WorkOutContext } from '@/Context/WorkOutContext';
+import { WorksOutType } from '@/types/WorksOutType';
 
+interface ContextStateProp{
+  addPlan:WorksOutType[]
+  savelater:WorksOutType[]
+
+}
 const Navbar = () => {
+  const {addPlan,savelater}=useContext(WorkOutContext)as ContextStateProp
 
     const links =<>
          <li><Link href="/">Worksout</Link></li> 
@@ -37,12 +46,12 @@ const Navbar = () => {
     <div className='flex gap-3 items-center'>
        
         <h2 className='text-xm  font-medium' >Plan</h2>
-         <span className="rounded-full bg-[#ccff00] px-3 py-1 text-sm font-semibold text-black">0</span>
+         <span className="rounded-full bg-[#ccff00] px-3 py-1 text-sm font-semibold text-black">{addPlan.length}</span>
     </div>
     <div className='flex gap-3 items-center'>
        
         <h2 className='text-xm font-medium' >Saved</h2>
-        <span  className="rounded-full border border-[#ccff00] px-3 py-1 text-sm font-semibold text-[#ccff00]" >0</span>
+        <span  className="rounded-full border border-[#ccff00] px-3 py-1 text-sm font-semibold text-[#ccff00]" >{savelater.length}</span>
     </div>
   </div>
 </div>

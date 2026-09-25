@@ -1,8 +1,9 @@
 import AddPlanButton from '@/components/WorksOutDetails/AddPlanButton';
+import SaveLaterButton from '@/components/WorksOutDetails/SaveLaterButton';
 import { WorksOutType } from '@/types/WorksOutType';
 import Image from 'next/image';
 import React from 'react';
-import { FaBookmark } from 'react-icons/fa';
+
 
 interface WorkOutDetailsPageProp{
     params:Promise<{
@@ -103,7 +104,7 @@ const WorkOutDetailsPage = async({params}:WorkOutDetailsPageProp) => {
             </div>
     <div className="card-actions my-10 gap-8 ">
       <AddPlanButton worksOut={worksOut}></AddPlanButton>
-      <button className="btn bg-[#374151] text-[#e5e7eb] flex gap-3 "><FaBookmark />Save for later</button>
+      <SaveLaterButton worksOut={worksOut}></SaveLaterButton>
     </div>
   </div>
 </div>

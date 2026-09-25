@@ -1,10 +1,10 @@
 'use client'
 
 
-import React, { createContext, ReactNode, useState } from 'react';
+import { WorksOutType } from '@/types/WorksOutType';
+import React, { createContext,  ReactNode, useState } from 'react';
 
 export const WorkOutContext = createContext({});
-
 
 
 

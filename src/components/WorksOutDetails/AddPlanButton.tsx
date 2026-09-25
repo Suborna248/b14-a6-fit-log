@@ -8,6 +8,14 @@ import { toast } from 'react-toastify';
 
 interface AddPlanButtonProp{
     worksOut:WorksOutType
+   ;
+
+} 
+
+interface WorkOutContextType {
+  addPlan: WorksOutType[];
+  setAddPlan: React.Dispatch<React.SetStateAction<WorksOutType[]>>;
+
 
 }
 
@@ -15,17 +23,17 @@ interface AddPlanButtonProp{
 
 const AddPlanButton = ({worksOut}:AddPlanButtonProp) => {
 
-    const {addPlan,setAddPlan} = useContext(WorkOutContext);
+    const {addPlan,setAddPlan}= useContext(WorkOutContext) as WorkOutContextType;
 
     const alreadyAdded =addPlan.some((works:WorksOutType)=> works.id === worksOut.id) ;
 
     const handleAddPlan = ()=>{
        
-        if(!alreadyAdded){
+        
         setAddPlan([...addPlan,worksOut]);
         toast.success(`WorksOut added to ${worksOut.name} today's plan!`);
 
-        }
+       
       
 
     }
