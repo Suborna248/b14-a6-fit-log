@@ -5,6 +5,7 @@ import React, { useContext } from 'react';
 import logo from '../../assets/logo.png'
 import { WorkOutContext } from '@/Context/WorkOutContext';
 import { WorksOutType } from '@/types/WorksOutType';
+import { usePathname } from 'next/navigation';
 
 interface ContextStateProp{
   addPlan:WorksOutType[]
@@ -12,11 +13,12 @@ interface ContextStateProp{
 
 }
 const Navbar = () => {
-  const {addPlan,savelater}=useContext(WorkOutContext)as ContextStateProp
+  const {addPlan,savelater}=useContext(WorkOutContext)as ContextStateProp;
+   const pathname = usePathname()
 
     const links =<>
-         <li><Link href="/">Worksout</Link></li> 
-         <li><Link href='/myplan'>My Plan</Link></li>
+         <li><Link className={pathname === "/" ? "text-[#c2f800] border border-[#9ca3af] rounded-3xl font-semibold " : " "} href="/">Worksout</Link></li> 
+         <li><Link className={pathname === "/myplan" ? "text-[#c2f800] border border-[#9ca3af] rounded-3xl font-semibold " : " "} href='/myplan'>My Plan</Link></li>
     </>
     return (
         <div className=' bg-[#1a2312]  shadow-sm text-[#ffffff]  sticky top-0 z-50 border-b-2 border-gray-300 '>
