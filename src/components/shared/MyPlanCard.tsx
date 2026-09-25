@@ -1,12 +1,21 @@
+
+
+import { WorkOutContext } from '@/Context/WorkOutContext';
 import { WorksOutType } from '@/types/WorksOutType';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
-import { FaFireAlt, FaRegStar } from 'react-icons/fa';
+import React, { useContext } from 'react';
+import { FaCheck, FaFireAlt, FaRegStar } from 'react-icons/fa';
 import { MdAccessTime } from 'react-icons/md';
+import { RiDeleteBack2Fill } from 'react-icons/ri';
+
+interface ContextStateProp {
+  handleRemovePlan: (id: number) => void;
+  handleMarkAsDone: (id: number) => void;
+}
 
 const MyPlanCard = ({plan}:{plan:WorksOutType}) => {
-    console.log(plan)
+    const {handleRemovePlan,handleMarkAsDone} =useContext(WorkOutContext) as ContextStateProp;
 
     return (
         <div className='bg-[#13161d] rounded-xl shadow-2xl'>
@@ -56,9 +65,11 @@ const MyPlanCard = ({plan}:{plan:WorksOutType}) => {
                             <Link href={`/worksout/${plan.id}`}>
                             <button className="btn btn-neutral border-amber-50 rounded-full">View Details</button>
                             </Link>
-                            <Link href={`/worksout/${plan.id}`}>
-                            <button className="btn btn-neutral border-amber-50 bg-[#ccff00] text-[#1e1e1e] rounded-full">Mark as Done</button>
-                            </Link>
+                            
+                            <button onClick={() => handleMarkAsDone(plan.id)} className="btn btn-neutral border-amber-50 bg-[#ccff00] text-[#1e1e1e] rounded-full"><FaCheck />Mark as Done</button>
+                        
+
+                             <button onClick={() =>{handleRemovePlan(plan.id)}}> <RiDeleteBack2Fill className='text-[red] text-4xl' /></button>
              </div>
 
 

@@ -1,11 +1,20 @@
+import { WorkOutContext } from '@/Context/WorkOutContext';
 import { WorksOutType } from '@/types/WorksOutType';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaFireAlt, FaRegStar } from 'react-icons/fa';
 import { MdAccessTime } from 'react-icons/md';
+import { RiDeleteBack2Fill } from 'react-icons/ri';
+
+interface ContextStateProp {
+  handleRemoveSave: (id: number) => void;
+}
 
 const MySavedCard = ({saved}:{saved:WorksOutType}) => {
+    const {handleRemoveSave}=useContext(WorkOutContext)  as ContextStateProp;
+ 
+    
     return (
         <div>
 
@@ -52,10 +61,13 @@ const MySavedCard = ({saved}:{saved:WorksOutType}) => {
             
                         </div>
 
-                        <div>
+                        <div className='flex items-center gap-4'>
                             <Link href={`/worksout/${saved.id}`}>
                             <button className="btn btn-neutral border-amber-50 rounded-full">View Details</button>
+
                             </Link>
+
+                           <button onClick={() =>{handleRemoveSave(saved.id)}}> <RiDeleteBack2Fill className='text-[red] text-4xl' /></button>
                         </div>
 
 

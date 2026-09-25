@@ -28,8 +28,8 @@ const SaveLaterButton = ({worksOut}:{worksOut:WorksOutType}) => {
     }
     return (
         <div>
-           <button className={`btn flex gap-3 ${alreadySaved ? "bg-gray-600 text-gray-400 cursor-not-allowed": 
-                "bg-[#374151] text-[#e5e7eb hover:bg-[#4b5563]"}`}onClick={handleSaveLater}disabled={alreadySaved}>
+           <button className={`btn flex gap-3 ${alreadySaved ? "bg-gray-700 text-gray-500": 
+                "bg-[#374151] text-[#e5e7eb] hover:bg-[#4b5563]"}`}onClick={handleSaveLater}disabled={alreadySaved}>
              <FaBookmark />
   {alreadySaved ? "Saved for later" : "Save for later"}
    </button>

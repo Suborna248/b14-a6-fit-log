@@ -29,7 +29,6 @@ const AddPlanButton = ({worksOut}:AddPlanButtonProp) => {
 
     const handleAddPlan = ()=>{
        
-        
         setAddPlan([...addPlan,worksOut]);
         toast.success(`WorksOut added to ${worksOut.name} today's plan!`);
 
