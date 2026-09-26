@@ -16,6 +16,27 @@ interface ContextStateProp{
 const MyPlanPage = () => {
     const {addPlan,savelater}=useContext(WorkOutContext)as ContextStateProp ;
     const [activeTab, setactiveTab]=useState<"plan" | "saved">("plan");
+    const [sortBy,setSortBy]=useState<"duration"| "caloriesBurned" | "rating">("duration");
+
+    const sortWorkOuts =((worksOut : WorksOutType[])=>{
+        const sortedWorkOuts = [...worksOut]; 
+
+        if(sortBy === "duration"){
+            sortedWorkOuts.sort((a,b)=> b.duration - a.duration);
+        }else if(sortBy === "caloriesBurned" ){
+            sortedWorkOuts.sort((a,b) => b.caloriesBurned- a.caloriesBurned)
+
+
+        }
+        else if(sortBy === "rating"){
+             sortedWorkOuts.sort((a,b)=> b.rating - a.rating);
+
+        }return sortedWorkOuts;
+
+    })
+
+    const sortedAddPlan = sortWorkOuts(addPlan);
+    const sortedSaveLater = sortWorkOuts(savelater);
    
      const currentAddPlans =activeTab === "plan" ? addPlan : savelater;
 
@@ -34,7 +55,7 @@ const MyPlanPage = () => {
                 <h2 className='text-[#1e1e1e] text-3xl font-bold'>My Plan</h2>
                 <p className='text-[#8a92a0] text-sm font-normal'>Cap of five lifts for today. Finish them, then load more.</p>
             </div>
-            <div className='flex  bg-[#232732] gap-86 py-8   px-14'>
+            <div className='flex  bg-[#232732]  w-150 sm:w-200  lg:w-full gap-24 sm:gap-44  lg:gap-86 py-8   px-14'>
            
                 <div>
                     <p className='text-[#8a92a0] text-xs'>Exercises</p>
@@ -51,38 +72,86 @@ const MyPlanPage = () => {
 
             </div>
 
-            <div className="tabs tabs-box my-14">
-            <input type="radio" name="my_tabs_6" className="tab" aria-label="Today's Plan" checked={activeTab === "plan"} 
-            onChange={()=> setactiveTab("plan")} />
-           <div className="tab-content bg-base-100 border-base-300 p-6">
+           <div className="my-14">
+ 
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+    
+   
+    <div className="tabs tabs-box">
+      <input
+        type="radio"
+        name="my_tabs_6"
+        className="tab"
+        aria-label="Today's Plan"
+        checked={activeTab === "plan"}
+        onChange={() => setactiveTab("plan")}
+      />
 
-             <div className='space-y-6'>
+      <input
+        type="radio"
+        name="my_tabs_6"
+        className="tab"
+        aria-label="Saved"
+        checked={activeTab === "saved"}
+        onChange={() => setactiveTab("saved")}
+      />
+    </div>
 
-                {
-                    addPlan.length>0 ? (
-                    addPlan.map((plan:WorksOutType)=><MyPlanCard plan={plan} key={plan.id}></MyPlanCard>)
-                ) : (<NothingYet></NothingYet>)
-                }
-
-                
-            </div>
-           </div>
-
-           <input type="radio" name="my_tabs_6" className="tab" aria-label="Saved"  checked={activeTab === "saved"}  onChange={() =>setactiveTab("saved")}/>
-            <div className="tab-content bg-base-100 border-base-300 p-6">  <div className='space-y-6'>
-
-                {
-                   savelater.length>0 ? (
-                    savelater.map((saved:WorksOutType)=><MySavedCard saved={saved} key={saved.id}></MySavedCard >)
-                ) : (<NothingYet></NothingYet>)
-                }
-
-                
-            </div>
-            </div>
-
+   
+    <div className=''> 
   
-           </div>
+      <select
+       className="select select-[white] "
+        value={sortBy}
+        onChange={(e)=>setSortBy(e.target.value  as "duration"| "caloriesBurned" | "rating")}
+
+        
+      >
+        <option disabled>Sort By</option>
+        <option value="duration">Duration</option>
+        <option value="caloriesBurned">Calories</option>
+        <option value="rating">Rating</option>
+      </select>
+    </div>
+  </div>
+
+ 
+  <div className="mt-6">
+    {activeTab === "plan" && (
+      <div className="bg-base-100 border border-base-300 p-6 rounded-box">
+        <div className="space-y-6">
+          {sortedAddPlan.length > 0 ? (
+            sortedAddPlan.map((plan: WorksOutType) => (
+              <MyPlanCard
+                plan={plan}
+                key={plan.id}
+              />
+            ))
+          ) : (
+            <NothingYet />
+          )}
+        </div>
+      </div>
+    )}
+
+    {activeTab === "saved" && (
+      <div className="bg-base-100 border border-base-300 p-6 rounded-box">
+        <div className="space-y-6">
+          {sortedSaveLater.length > 0 ? (
+            sortedSaveLater.map((saved: WorksOutType) => (
+              <MySavedCard
+                saved={saved}
+                key={saved.id}
+              />
+            ))
+          ) : (
+            <NothingYet />
+          )}
+        </div>
+      </div>
+    )}
+  </div>
+</div>
 
            
            
