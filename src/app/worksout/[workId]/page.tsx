@@ -11,17 +11,25 @@ interface WorkOutDetailsPageProp{
     }>
 }
 
-const getWorksOut =async (workId: string): Promise<WorksOutType[]>=>{
-    const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${workId}`);
-    const data = await res.json();
-    return data;
-}
+const getWorksOut = async (
+  workId: string
+): Promise<WorksOutType> => {
+  const res = await fetch(
+    `https://api.abcz.workers.dev/api/fitlog/${workId}`
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch workout");
+  }
+
+  return res.json();
+};
 
 const WorkOutDetailsPage = async({params}:WorkOutDetailsPageProp) => {
 
     const {workId} = await params;
-    const worksOuts = await getWorksOut(workId);
-    const worksOut = worksOuts.find((workOut : WorksOutType) => workOut.id === parseInt(workId)) as WorksOutType;
+    const worksOut= await getWorksOut(workId);
+   
    
     return (
         <div className='container mx-auto my-16 '>
