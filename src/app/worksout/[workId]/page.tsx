@@ -14,7 +14,7 @@ const getWorksOut = async (
   workId: string
 ): Promise<WorksOutType> => {
   const res = await fetch(
-    `https://api.abcz.workers.dev/api/fitlog/${workId}`
+     `https://api.api-store.workers.dev/api/fitlog/${workId}`
   );
 
   if (!res.ok) {
