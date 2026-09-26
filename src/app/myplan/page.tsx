@@ -5,7 +5,8 @@ import MyPlanCard from '@/components/shared/MyPlanCard';
 import MySavedCard from '@/components/shared/MySavedCard';
 import { WorkOutContext } from '@/Context/WorkOutContext';
 import { WorksOutType } from '@/types/WorksOutType';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import Loading from '../loading';
 
 
 interface ContextStateProp{
@@ -16,7 +17,14 @@ interface ContextStateProp{
 const MyPlanPage = () => {
     const {addPlan,savelater}=useContext(WorkOutContext)as ContextStateProp ;
     const [activeTab, setactiveTab]=useState<"plan" | "saved">("plan");
-    const [sortBy,setSortBy]=useState<"duration"| "caloriesBurned" | "rating">("duration");
+    const [sortBy,setSortBy]=useState<"duration"| "caloriesBurned" | "rating">("duration"); 
+    const [loading, setLoading]=useState<boolean>(true);
+
+    useEffect(() => {
+         const timer = setTimeout(() => 
+            { setLoading(false); }, 800); 
+         return () => clearTimeout(timer); 
+        }, []);
 
     const sortWorkOuts =((worksOut : WorksOutType[])=>{
         const sortedWorkOuts = [...worksOut]; 
@@ -117,39 +125,50 @@ const MyPlanPage = () => {
 
  
   <div className="mt-6">
-    {activeTab === "plan" && (
-      <div className="bg-base-100 border border-base-300 p-6 rounded-box">
-        <div className="space-y-6">
-          {sortedAddPlan.length > 0 ? (
-            sortedAddPlan.map((plan: WorksOutType) => (
-              <MyPlanCard
-                plan={plan}
-                key={plan.id}
-              />
-            ))
-          ) : (
-            <NothingYet />
-          )}
-        </div>
-      </div>
-    )}
 
-    {activeTab === "saved" && (
-      <div className="bg-base-100 border border-base-300 p-6 rounded-box">
-        <div className="space-y-6">
-          {sortedSaveLater.length > 0 ? (
-            sortedSaveLater.map((saved: WorksOutType) => (
-              <MySavedCard
-                saved={saved}
-                key={saved.id}
-              />
-            ))
+          {loading ? (
+           <Loading></Loading>
           ) : (
-            <NothingYet />
+            <>
+           
+              {activeTab === "plan" && (
+                <div className="space-y-6">
+
+                  {sortedAddPlan.length > 0 ? (
+                    sortedAddPlan.map((plan) => (
+                      <MyPlanCard
+                        key={plan.id}
+                        plan={plan}
+                      />
+                    ))
+                  ) : (
+                    <NothingYet />
+                  )}
+
+                </div>
+              )}
+
+             
+              {activeTab === "saved" && (
+                <div className="space-y-6">
+
+                  {sortedSaveLater.length > 0 ? (
+                    sortedSaveLater.map((saved) => (
+                      <MySavedCard
+                        key={saved.id}
+                        saved={saved}
+                      />
+                    ))
+                  ) : (
+                    <NothingYet />
+                  )}
+
+                </div>
+              )}
+            </>
           )}
-        </div>
-      </div>
-    )}
+
+  
   </div>
 </div>
 

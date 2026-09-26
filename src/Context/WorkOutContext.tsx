@@ -2,6 +2,7 @@
 
 
 import { WorksOutType } from '@/types/WorksOutType';
+
 import React, { createContext,  ReactNode, useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -11,8 +12,13 @@ export const WorkOutContext = createContext({});
 
 
 const WorkOutProvider = ({children}:{children:ReactNode}) => {
-    const [addPlan ,setAddPlan]=useState([]);
-    const [savelater, setSaveLater]=useState([]);
+    const [addPlan ,setAddPlan]=useState<WorksOutType[]>([]);
+    const [savelater, setSaveLater]=useState<WorksOutType[]>([]);
+    
+
+ 
+
+
 
      const handleRemovePlan =(id:number):void=>{
         const resPlan = addPlan.filter((plan:WorksOutType)=> plan.id !== id) ;
