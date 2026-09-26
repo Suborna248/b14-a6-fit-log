@@ -4,11 +4,10 @@ import { WorksOutType } from '@/types/WorksOutType';
 import Image from 'next/image';
 import React from 'react';
 
-
-interface WorkOutDetailsPageProp{
-    params:Promise<{
-        workId:string
-    }>
+interface WorkOutDetailsPageProp {
+  params: Promise<{
+    workId: string;
+  }>;
 }
 
 const getWorksOut = async (
@@ -25,10 +24,12 @@ const getWorksOut = async (
   return res.json();
 };
 
-const WorkOutDetailsPage = async({params}:WorkOutDetailsPageProp) => {
+const WorkOutDetailsPage = async ({
+  params,
+}: WorkOutDetailsPageProp) => {
+  const { workId } = await params;
 
-    const {workId} = await params;
-    const worksOut= await getWorksOut(workId);
+  const worksOut = await getWorksOut(workId);
    
    
     return (
