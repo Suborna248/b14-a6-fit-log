@@ -11,8 +11,8 @@ interface WorkOutDetailsPageProp{
     }>
 }
 
-const getWorksOut =async (): Promise<WorksOutType[]>=>{
-    const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
+const getWorksOut =async (workId: string): Promise<WorksOutType[]>=>{
+    const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${workId}`);
     const data = await res.json();
     return data;
 }
@@ -20,7 +20,7 @@ const getWorksOut =async (): Promise<WorksOutType[]>=>{
 const WorkOutDetailsPage = async({params}:WorkOutDetailsPageProp) => {
 
     const {workId} = await params;
-    const worksOuts = await getWorksOut();
+    const worksOuts = await getWorksOut(workId);
     const worksOut = worksOuts.find((workOut : WorksOutType) => workOut.id === parseInt(workId)) as WorksOutType;
    
     return (
