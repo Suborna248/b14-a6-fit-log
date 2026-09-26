@@ -3,7 +3,7 @@ import React from 'react';
 import WorksOutCards from '../shared/WorksOutCards';
 
 const getWorksOut = async ()=>{
-    const res = await fetch('http://localhost:3000/worksoutdata.json');
+    const res = await fetch('https://api.abcz.workers.dev/api/fitlog');
     const data = await res.json();
     return data;
 }

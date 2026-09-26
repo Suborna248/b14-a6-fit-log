@@ -11,8 +11,8 @@ interface WorkOutDetailsPageProp{
     }>
 }
 
-const getWorksOut = async ()=>{
-    const res = await fetch('http://localhost:3000/worksoutdata.json');
+const getWorksOut =async (): Promise<WorksOutType[]>=>{
+    const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
     const data = await res.json();
     return data;
 }
@@ -22,7 +22,7 @@ const WorkOutDetailsPage = async({params}:WorkOutDetailsPageProp) => {
     const {workId} = await params;
     const worksOuts = await getWorksOut();
     const worksOut = worksOuts.find((workOut : WorksOutType) => workOut.id === parseInt(workId)) as WorksOutType;
-    console.log(worksOut);
+   
     return (
         <div className='container mx-auto my-16 '>
             <div className="card lg:card-side bg-[#171a21] rounded-4xl shadow-2xl max-w-[1500px]">
